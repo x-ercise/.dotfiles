@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src vscode-resource: https:; script-src 'nonce-${nonce}'; style-src 'nonce-${nonce}'">
+        <link rel="stylesheet" href="${styleUri}" nonce="${nonce}">
+    </head>
+    <body>
+        <!-- The following empty script tag is used to inject variables -->
+        <script nonce="${nonce}"></script>
+        <div class="vsliveshare-welcome-page-main">
+            <header>
+                <img class="vsls-icon" src="https://aka.ms/vsls-icon" />
+                <div class="headings">
+                    <h1>Visual Studio Live Share</h1>
+                    <h2>Real-time Collaborative Development</h2>
+                </div>
+            </header>
+            <p>Welcome to Visual Studio Live Share! Get your team started with collaborative editing and debugging in just a few simple steps:</p>
+            <ol>
+                <li id="js-step-share">
+                    <p><span class="step-heading">Share</span> - Click the <i>Share</i> button in your status bar, which will share your project, and copy a unique session URL to your clipboard.</p>
+                    <img src="https://aka.ms/vsls/quickstart/share" width="136px" alt="Visual Studio Code share status bar item" />
+                    <p>You'll be asked to sign in the first time you share (using a GitHub or Microsoft account), which allows others to identify you when collaborating.</p>
+                    <img src="https://aka.ms/vsls/quickstart/signin" width="400px" />
+                    <blockquote>
+                        <p>On Windows, you may be asked to allow Live Share to open a firewall port, in order to enable peer-to-peer connections.</p>
+                    </blockquote>
+                </li>
+                <li>
+                    <p><span class="step-heading">Invite</span> - Send the session URL to the developers you'd like to collaborate with (up to 5!), using e-mail, Skype, Slack, etc. <a id="security-info-link" href="https://aka.ms/vsls-security">View security info</a> to understand more about secure sharing.</p>
+                    <blockquote>
+                        <p>Want to evaluate VS Live Share but don't have anyone to collaborate with? No problem! You can actually join your own session from another instance of VS Code.</p>
+                    </blockquote>
+                    <p id="js-join-uri">Collaboration session URL: <div id="js-join-uri-box" class="box">${this.joinUri}</div></p><button id="js-join-uri-copy-button" class="button">Copy invite link</button> <button id="js-share-with-yourself-button">Try joining yourself</button>
+                    <br/>
+                    <img src="https://aka.ms/vsls/quickstart/invite" width="450px" />
+                </li>
+                <li>
+                    <p><span class="step-heading">Collaborate</span> - That's it! Once an invited "guest" joins, you'll get a notification, and will see their cursor appear in your currently opened file. All guests will start out <a id="follow-guest-link1" href="https://aka.ms/vsls-docs/vscode#following">"following"</a> you, which means that as you scroll or navigate between files, they will track those actions as well. This makes it easy to orient them with the issue/question/task you're about to start collaborating on.</p>
+                    <img src="https://aka.ms/vsls/quickstart/guest-join" width="400px" />
+                    <p>Additionally, to get the most out of Live Share, here are a few things to try out:</p>
+                    <ul>
+                        <li>Move your cursor, edit and highlight text, and watch guests do the same</li>
+                        <li><a id="follow-guest-link2" href="https://aka.ms/vsls-docs/vscode#following">Follow a guest</a>, and have them scroll and/or navigate to other files</li>
+                        <li><a id="share-debug-session-link" href="https://aka.ms/vsls-docs/vscode#co-debugging">Share a debugging session</a>, by pressing F5, and then stepping together in real time</li>
+                        <li><a id="share-server-link" href="https://aka.ms/vsls-docs/vscode#share-a-server">Share a server</a>, so guests can view a locally running web app, database, etc.</li>
+                        <li><a id="share-terminal-link" href="https://aka.ms/vsls-docs/vscode#share-a-terminal">Share a terminal</a> and run commands collaboratively</li>
+                        <li><a id="start-voice-call-link" href="https://aka.ms/vsls-audio">Start a voice call</a> using the VS Live Share Audio extension</li>
+                    </ul>
+                </li>
+            </ol>
+            <p>If you run into any problems, see our <a id="troubleshooting-link" href="http://aka.ms/vsls-troubleshooting">troubleshooting documentation</a> for potential workarounds. Additionally, if you have any questions and/or feedback, please don't hesitate to reach out to the team on <a id="github-link" href="http://github.com/microsoft/live-share">GitHub</a>.</p>
+        </div>
+        <script nonce="${nonce}" src="${mainScriptUri}"></script>
+    </body>
+</html>

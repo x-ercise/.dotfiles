@@ -1,0 +1,779 @@
+{
+	"name": "vscode-azureappservice",
+	"displayName": "Azure App Service",
+	"description": "An Azure App Service management extension for Visual Studio Code.",
+	"version": "0.9.1",
+	"publisher": "ms-azuretools",
+	"icon": "resources/windows-azure-web-site.png",
+	"aiKey": "AIF-d9b70cd4-b9f9-4d70-929b-a071c400b217",
+	"engines": {
+		"vscode": "^1.23.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-azureappservice"
+	},
+	"galleryBanner": {
+		"color": "#0072c6",
+		"theme": "dark"
+	},
+	"homepage": "https://github.com/Microsoft/vscode-azureappservice/blob/master/README.md",
+	"license": "SEE LICENSE IN LICENSE.md",
+	"categories": [
+		"Azure"
+	],
+	"keywords": [
+		"Azure",
+		"App Service",
+		"multi-root ready"
+	],
+	"preview": true,
+	"activationEvents": [
+		"onCommand:appService.CreateWebApp",
+		"onCommand:appService.Refresh",
+		"onCommand:appService.LoadMore",
+		"onCommand:appService.OpenInPortal",
+		"onCommand:appService.Browse",
+		"onCommand:appService.Start",
+		"onCommand:appService.Stop",
+		"onCommand:appService.Restart",
+		"onCommand:appService.Delete",
+		"onCommand:appService.Deploy",
+		"onCommand:appService.ConfigureDeploymentSource",
+		"onCommand:appService.DeploymentScript",
+		"onCommand:appService.OpenVSTSCD",
+		"onCommand:appService.SwapSlots",
+		"onCommand:appService.appSettings.Add",
+		"onCommand:appService.appSettings.Edit",
+		"onCommand:appService.appSettings.Rename",
+		"onCommand:appService.appSettings.Delete",
+		"onCommand:appService.OpenLogStream",
+		"onCommand:appService.StopLogStream",
+		"onCommand:appService.StartRemoteDebug",
+		"onCommand:appService.DisableRemoteDebug",
+		"onCommand:appService.CreateSlot",
+		"onCommand:appService.EnableFileLogging",
+		"onView:azureAppService"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "appService.selectSubscriptions",
+				"title": "Select Subscriptions...",
+				"icon": {
+					"light": "resources/light/filter.svg",
+					"dark": "resources/dark/filter.svg"
+				}
+			},
+			{
+				"command": "appService.CreateWebApp",
+				"title": "Create New Web App...",
+				"category": "Azure App Service",
+				"icon": {
+					"light": "resources/light/createAppSvc.svg",
+					"dark": "resources/dark/createAppSvc.svg"
+				}
+			},
+			{
+				"command": "appService.Deploy",
+				"title": "Deploy to Web App...",
+				"category": "Azure App Service",
+				"icon": {
+					"light": "resources/light/Deploy.svg",
+					"dark": "resources/dark/Deploy.svg"
+				}
+			},
+			{
+				"command": "appService.Refresh",
+				"title": "Refresh",
+				"category": "Azure App Service",
+				"icon": {
+					"light": "resources/light/refresh.svg",
+					"dark": "resources/dark/refresh.svg"
+				}
+			},
+			{
+				"command": "appService.LoadMore",
+				"title": "Load More",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.OpenInPortal",
+				"title": "Open in Portal",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.Browse",
+				"title": "Browse Website",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.Start",
+				"title": "Start",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.Stop",
+				"title": "Stop",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.Restart",
+				"title": "Restart",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.Delete",
+				"title": "Delete...",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.DeploymentScript",
+				"title": "Generate Azure CLI Script",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.ConfigureDeploymentSource",
+				"title": "Configure Deployment Source...",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.OpenVSTSCD",
+				"title": "Continuous Delivery (Preview)",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.SwapSlots",
+				"title": "Swap Deployment Slot...",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.appSettings.Add",
+				"title": "Add New Setting...",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.appSettings.Edit",
+				"title": "Edit...",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.appSettings.Rename",
+				"title": "Rename...",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.appSettings.Delete",
+				"title": "Delete...",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.OpenLogStream",
+				"title": "Start Streaming Logs",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.StopLogStream",
+				"title": "Stop Streaming Logs",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.CreateSlot",
+				"title": "Create New Deployment Slot...",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.StartRemoteDebug",
+				"title": "Start Remote Debugging",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.DisableRemoteDebug",
+				"title": "Disable Remote Debugging",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.StartLogPointsSession",
+				"title": "Launch Logpoints Debug Session",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.LogPoints.OpenScript",
+				"title": "Open and See the Content of a Script",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.LogPoints.Toggle",
+				"title": "Set or Remove a Logpoint",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.ScaleUp",
+				"title": "Scale up App Service Plan...",
+				"category": "Azure App Service"
+			},
+			{
+				"command": "appService.EnableFileLogging",
+				"title": "Enable File Logging",
+				"category": "Azure App Service"
+			}
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "azure",
+					"title": "Azure",
+					"icon": "resources/azure.svg"
+				}
+			]
+		},
+		"views": {
+			"azure": [
+				{
+					"id": "azureAppService",
+					"name": "App Service",
+					"when": "config.appService.showExplorer == true"
+				}
+			],
+			"debug": [
+				{
+					"id": "appservice.loadedScriptsExplorer.jsLogpoints",
+					"name": "LOADED SCRIPTS",
+					"when": "inDebugMode && debugType == 'jsLogpoints'"
+				}
+			]
+		},
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "appService.selectSubscriptions",
+					"when": "never"
+				},
+				{
+					"command": "appService.Refresh",
+					"when": "never"
+				},
+				{
+					"command": "appService.LoadMore",
+					"when": "never"
+				},
+				{
+					"command": "appService.StartLogPointsSession",
+					"when": "never"
+				},
+				{
+					"command": "appService.LogPoints.OpenScript",
+					"when": "never"
+				},
+				{
+					"command": "appService.LogPoints.Toggle",
+					"when": "never"
+				},
+				{
+					"command": "appService.StartLogPointsSession",
+					"when": "never"
+				},
+				{
+					"command": "appService.LogPoints.OpenScript",
+					"when": "never"
+				},
+				{
+					"command": "appService.LogPoints.Toggle",
+					"when": "never"
+				},
+				{
+					"command": "appService.StartRemoteDebug",
+					"when": "config.appService.enableRemoteDebugging == true"
+				},
+				{
+					"command": "appService.DisableRemoteDebug",
+					"when": "config.appService.enableRemoteDebugging == true"
+				},
+				{
+					"command": "appService.ScaleUp",
+					"when": "never"
+				}
+			],
+			"view/title": [
+				{
+					"command": "appService.CreateWebApp",
+					"when": "view == azureAppService",
+					"group": "navigation@1"
+				},
+				{
+					"command": "appService.Deploy",
+					"when": "view == azureAppService",
+					"group": "navigation@2"
+				},
+				{
+					"command": "appService.Refresh",
+					"when": "view == azureAppService",
+					"group": "navigation@3"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "appService.selectSubscriptions",
+					"when": "view == azureAppService && viewItem == azureextensionui.azureSubscription",
+					"group": "inline"
+				},
+				{
+					"command": "appService.CreateWebApp",
+					"when": "view == azureAppService && viewItem == azureextensionui.azureSubscription",
+					"group": "1_subscriptionGeneralCommands@1"
+				},
+				{
+					"command": "appService.OpenInPortal",
+					"when": "view == azureAppService && viewItem == azureextensionui.azureSubscription",
+					"group": "1_subscriptionGeneralCommands@2"
+				},
+				{
+					"command": "appService.Refresh",
+					"when": "view == azureAppService && viewItem == azureextensionui.azureSubscription",
+					"group": "2_subscriptionGeneralCommands@1"
+				},
+				{
+					"command": "appService.OpenInPortal",
+					"when": "view == azureAppService && viewItem == appService",
+					"group": "1_appServiceGeneralCommands@1"
+				},
+				{
+					"command": "appService.Browse",
+					"when": "view == azureAppService && viewItem == appService",
+					"group": "1_appServiceGeneralCommands@2"
+				},
+				{
+					"command": "appService.Start",
+					"when": "view == azureAppService && viewItem == appService",
+					"group": "2_appServiceControlCommands@1"
+				},
+				{
+					"command": "appService.Stop",
+					"when": "view == azureAppService && viewItem == appService",
+					"group": "2_appServiceControlCommands@2"
+				},
+				{
+					"command": "appService.Restart",
+					"when": "view == azureAppService && viewItem == appService",
+					"group": "2_appServiceControlCommands@3"
+				},
+				{
+					"command": "appService.Delete",
+					"when": "view == azureAppService && viewItem == appService",
+					"group": "2_appServiceControlCommands@4"
+				},
+				{
+					"command": "appService.Deploy",
+					"when": "view == azureAppService && viewItem == appService",
+					"group": "3_appServiceDeployCommands@1"
+				},
+				{
+					"command": "appService.ConfigureDeploymentSource",
+					"when": "view == azureAppService && viewItem == appService",
+					"group": "3_appServiceDeployCommands@2"
+				},
+				{
+					"command": "appService.OpenVSTSCD",
+					"when": "view == azureAppService && viewItem == appService",
+					"group": "3_appServiceDeployCommands@3"
+				},
+				{
+					"command": "appService.OpenLogStream",
+					"when": "view == azureAppService && viewItem == appService",
+					"group": "4_appServiceDiagnosticsCommands@1"
+				},
+				{
+					"command": "appService.StopLogStream",
+					"when": "view == azureAppService && viewItem == appService",
+					"group": "4_appServiceDiagnosticsCommands@2"
+				},
+				{
+					"command": "appService.DeploymentScript",
+					"when": "view == azureAppService && viewItem == appService",
+					"group": "5_appServiceMiscCommands@1"
+				},
+				{
+					"command": "appService.Refresh",
+					"when": "view == azureAppService && viewItem == appService",
+					"group": "6_appServiceRefreshCommands@1"
+				},
+				{
+					"command": "appService.StartLogPointsSession",
+					"when": "config.appService.logpoints == true && view == azureAppService && viewItem == appService",
+					"group": "4_appServiceDiagnosticsCommands@3"
+				},
+				{
+					"command": "appService.StartRemoteDebug",
+					"when": "config.appService.enableRemoteDebugging == true && view == azureAppService && viewItem == appService",
+					"group": "5_appServiceRemoteDebugCommands@1"
+				},
+				{
+					"command": "appService.DisableRemoteDebug",
+					"when": "config.appService.enableRemoteDebugging == true && view == azureAppService && viewItem == appService",
+					"group": "5_appServiceRemoteDebugCommands@2"
+				},
+				{
+					"command": "appService.CreateSlot",
+					"when": "view == azureAppService && viewItem == deploymentSlots",
+					"group": "1_deploymentSlotsGeneralCommands@1"
+				},
+				{
+					"command": "appService.OpenInPortal",
+					"when": "view == azureAppService && viewItem == deploymentSlots",
+					"group": "1_deploymentSlotsGeneralCommands@2"
+				},
+				{
+					"command": "appService.Refresh",
+					"when": "view == azureAppService && viewItem == deploymentSlots",
+					"group": "2_deploymentSlotsGeneralCommands@1"
+				},
+				{
+					"command": "appService.OpenInPortal",
+					"when": "view == azureAppService && viewItem == deploymentSlot",
+					"group": "1_deploymentSlotGeneralCommands@1"
+				},
+				{
+					"command": "appService.Browse",
+					"when": "view == azureAppService && viewItem == deploymentSlot",
+					"group": "1_deploymentSlotGeneralCommands@2"
+				},
+				{
+					"command": "appService.Start",
+					"when": "view == azureAppService && viewItem == deploymentSlot",
+					"group": "2_deploymentSlotControlCommands@1"
+				},
+				{
+					"command": "appService.Stop",
+					"when": "view == azureAppService && viewItem == deploymentSlot",
+					"group": "2_deploymentSlotControlCommands@2"
+				},
+				{
+					"command": "appService.Restart",
+					"when": "view == azureAppService && viewItem == deploymentSlot",
+					"group": "2_deploymentSlotControlCommands@3"
+				},
+				{
+					"command": "appService.SwapSlots",
+					"when": "view == azureAppService && viewItem == deploymentSlot",
+					"group": "2_deploymentSlotControlCommands@4"
+				},
+				{
+					"command": "appService.Delete",
+					"when": "view == azureAppService && viewItem == deploymentSlot",
+					"group": "2_deploymentSlotControlCommands@5"
+				},
+				{
+					"command": "appService.Deploy",
+					"when": "view == azureAppService && viewItem == deploymentSlot",
+					"group": "3_deploymentSlotDeployCommands@1"
+				},
+				{
+					"command": "appService.ConfigureDeploymentSource",
+					"when": "view == azureAppService && viewItem == deploymentSlot",
+					"group": "3_deploymentSlotDeployCommands@2"
+				},
+				{
+					"command": "appService.OpenLogStream",
+					"when": "view == azureAppService && viewItem == deploymentSlot",
+					"group": "4_deploymentSlotDiagnosticsCommands@1"
+				},
+				{
+					"command": "appService.StopLogStream",
+					"when": "view == azureAppService && viewItem == deploymentSlot",
+					"group": "4_deploymentSlotDiagnosticsCommands@2"
+				},
+				{
+					"command": "appService.StartLogPointsSession",
+					"when": "config.appService.logpoints == true && view == azureAppService && viewItem == deploymentSlot",
+					"group": "4_deploymentSlotDiagnosticsCommands@3"
+				},
+				{
+					"command": "appService.StartRemoteDebug",
+					"when": "config.appService.enableRemoteDebugging == true && view == azureAppService && viewItem == deploymentSlot",
+					"group": "5_appServiceRemoteDebugCommands@1"
+				},
+				{
+					"command": "appService.DisableRemoteDebug",
+					"when": "config.appService.enableRemoteDebugging == true && view == azureAppService && viewItem == deploymentSlot",
+					"group": "5_appServiceRemoteDebugCommands@2"
+				},
+				{
+					"command": "appService.Refresh",
+					"when": "view == azureAppService && viewItem == deploymentSlot",
+					"group": "6_deploymentSlotRefreshCommands@1"
+				},
+				{
+					"command": "appService.EnableFileLogging",
+					"when": "view == azureAppService && viewItem == logFolder",
+					"group": "1_folderGeneralCommands@1"
+				},
+				{
+					"command": "appService.Refresh",
+					"when": "view == azureAppService && viewItem == folder",
+					"group": "1_folderGeneralCommands@2"
+				},
+				{
+					"command": "appService.Refresh",
+					"when": "view == azureAppService && viewItem == subFolder",
+					"group": "1_subFolderRefreshCommands@1"
+				},
+				{
+					"command": "appService.Refresh",
+					"when": "view == azureAppService && viewItem == logFolder",
+					"group": "2_folderGeneralCommands@1"
+				},
+				{
+					"command": "appService.OpenInPortal",
+					"when": "view == azureAppService && viewItem == webJobs",
+					"group": "1_webJobsGeneralCommands@1"
+				},
+				{
+					"command": "appService.Refresh",
+					"when": "view == azureAppService && viewItem == webJobs",
+					"group": "2_webJobsGeneralCommands@1"
+				},
+				{
+					"command": "appService.appSettings.Add",
+					"when": "view == azureAppService && viewItem == applicationSettings",
+					"group": "1_appSettingsEdit@1"
+				},
+				{
+					"command": "appService.OpenInPortal",
+					"when": "view == azureAppService && viewItem == applicationSettings",
+					"group": "1_appSettingsEdit@2"
+				},
+				{
+					"command": "appService.Refresh",
+					"when": "view == azureAppService && viewItem == applicationSettings",
+					"group": "2_appSettingsGeneral@1"
+				},
+				{
+					"command": "appService.appSettings.Edit",
+					"when": "view == azureAppService && viewItem == applicationSettingItem",
+					"group": "1_appSettingItemEdit@1"
+				},
+				{
+					"command": "appService.appSettings.Rename",
+					"when": "view == azureAppService && viewItem == applicationSettingItem",
+					"group": "1_appSettingItemEdit@2"
+				},
+				{
+					"command": "appService.appSettings.Delete",
+					"when": "view == azureAppService && viewItem == applicationSettingItem",
+					"group": "1_appSettingItemEdit@3"
+				},
+				{
+					"command": "appService.ScaleUp",
+					"when": "view == azureAppService && viewItem == deploymentNASlots"
+				}
+			],
+			"explorer/context": [
+				{
+					"command": "appService.Deploy",
+					"when": "explorerResourceIsFolder == true",
+					"group": "zzz_@appServiceDeployCommands"
+				},
+				{
+					"command": "appService.Deploy",
+					"when": "explorerResourceIsFolder == false && resourceExtname =~ /.[j|w]ar$/",
+					"group": "zzz_@appServiceDeployCommands"
+				}
+			],
+			"editor/context": [
+				{
+					"command": "appService.LogPoints.Toggle",
+					"when": "config.appService.logpoints == true"
+				}
+			]
+		},
+		"keybindings": [
+			{
+				"command": "workbench.view.extension.azure",
+				"key": "ctrl+shift+a",
+				"mac": "cmd+shift+a"
+			}
+		],
+		"configuration": {
+			"title": "Azure App Service",
+			"properties": {
+				"appService.showExplorer": {
+					"type": "boolean",
+					"default": true,
+					"description": "Show or hide the App Service Explorer"
+				},
+				"appService.enabledDockerImages": {
+					"type": "array",
+					"default": [
+						"f12azurenodelogpointsnightly.azurecr.io/azure-nodejs-logpoints",
+						"azurenodelogpoints.azurecr.io/azure-nodejs-logpoints"
+					],
+					"description": "The supported Docker images that logpoints feature can run with."
+				},
+				"appService.zipGlobPattern": {
+					"scope": "resource",
+					"type": "string",
+					"default": "**/*",
+					"description": "Defines which files in the workspace to deploy. This applies to Zip deploy only, has no effect on other deployment methods."
+				},
+				"appService.zipIgnorePattern": {
+					"scope": "resource",
+					"type": [
+						"string",
+						"array"
+					],
+					"default": [],
+					"description": "Defines which files in the workspace to ignore for Zip deploy. This applies to Zip deploy only, has no effect on other deployment methods."
+				},
+				"appService.showSavePrompt": {
+					"type": "boolean",
+					"default": true,
+					"description": "Show warning dialog on remote file uploading."
+				},
+				"appService.showBuildDuringDeployPrompt": {
+					"scope": "resource",
+					"type": "boolean",
+					"default": true,
+					"description": "Show prompt to improve performance of Zip Deploy by excluding build artifacts from the zip file and running a build during deployment."
+				},
+				"appService.deploySubpath": {
+					"scope": "resource",
+					"type": "string",
+					"description": "The default subpath of a workspace folder to use when deploying."
+				},
+				"appService.enableRemoteDebugging": {
+					"type": "boolean",
+					"default": false,
+					"description": "Enables remote debugging of a Web App. This experimental preview only supports node on Linux."
+				},
+				"appService.defaultWebAppToDeploy": {
+					"scope": "resource",
+					"type": "string",
+					"description": "The default web app to use when deploying.  Every subsequent deployment will deploy to this web app or slot."
+				},
+				"appService.advancedCreation": {
+					"type": "boolean",
+					"default": false,
+					"description": "Enables the Advanced Web App Creation which will prompt for app name, location, website OS, runtime, resource group, and app service plan."
+				}
+			}
+		},
+		"breakpoints": [
+			{
+				"language": "javascript"
+			}
+		],
+		"debuggers": [
+			{
+				"type": "jsLogpoints",
+				"label": "Azure App Service LogPoints",
+				"program": "./out/src/diagnostics/LogPointsDebugAdapter.js",
+				"runtime": "node",
+				"configurationAttributes": {
+					"launch": {
+						"required": [
+							"sessionId",
+							"debugId"
+						],
+						"properties": {
+							"trace": {
+								"type": "boolean",
+								"description": "Enable logging of the Debug Adapter Protocol.",
+								"default": true
+							},
+							"siteName": {
+								"type": "string",
+								"description": "A URL prefix for the azure scm url.",
+								"default": ""
+							},
+							"publishCredentialUsername": {
+								"type": "string",
+								"description": "publishingUserName",
+								"default": ""
+							},
+							"publishCredentialPassword": {
+								"type": "string",
+								"description": "publishingPassword",
+								"default": ""
+							},
+							"instanceId": {
+								"type": "string",
+								"description": "ARRAffinity",
+								"default": ""
+							},
+							"sessionId": {
+								"type": "string",
+								"description": "sessionId",
+								"default": ""
+							},
+							"debugId": {
+								"type": "string",
+								"description": "debugId",
+								"default": ""
+							}
+						}
+					}
+				},
+				"initialConfigurations": [
+					{
+						"type": "mock",
+						"name": "Azure App Service LogPoints",
+						"request": "attach",
+						"program": "readme.md",
+						"trace": true,
+						"hostname": "",
+						"instanceId": "",
+						"sessionId": "",
+						"debugId": ""
+					}
+				]
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "tsc -p ./",
+		"build": "tsc -p ./",
+		"compile": "tsc -watch -p ./",
+		"lint": "tslint --project tsconfig.json -t verbose",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/fs-extra": "^4.0.5",
+		"@types/mocha": "^2.2.32",
+		"@types/node": "^8.0.51",
+		"@types/request": "^2.0.3",
+		"@types/request-promise": "4.1.41",
+		"azure-storage": "^2.8.1",
+		"gulp": "^3.9.1",
+		"mocha": "^2.3.3",
+		"tslint": "^5.7.0",
+		"tslint-microsoft-contrib": "5.0.1",
+		"typescript": "^2.0.3",
+		"vscode": "^1.0.0",
+		"vsce": "^1.37.5"
+	},
+	"dependencies": {
+		"azure-arm-resource": "^3.0.0-preview",
+		"azure-arm-website": "^4.0.0",
+		"fs-extra": "^4.0.2",
+		"opn": "^5.3.0",
+		"portfinder": "^1.0.13",
+		"request": "^2.83.0",
+		"request-promise": "^4.2.2",
+		"vscode-azureappservice": "^0.21.0",
+		"vscode-azureextensionui": "^0.17.0",
+		"vscode-azurekudu": "^0.1.8",
+		"vscode-debugadapter": "^1.24.0",
+		"vscode-debugprotocol": "^1.24.0",
+		"vscode-extension-telemetry": "^0.0.18"
+	},
+	"extensionDependencies": [
+		"ms-vscode.azure-account"
+	],
+	"__metadata": {
+		"id": "42691ca6-18d6-4efe-9e9a-1aabad399d4b",
+		"publisherId": "52b787f2-79a9-4f32-99b4-393afe3005d3",
+		"publisherDisplayName": "Microsoft"
+	}
+}

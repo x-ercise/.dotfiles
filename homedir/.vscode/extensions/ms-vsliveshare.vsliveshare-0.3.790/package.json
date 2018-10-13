@@ -1,0 +1,1597 @@
+{
+	"name": "vsliveshare",
+	"displayName": "VS Live Share",
+	"description": "Real-time collaborative development from the comfort of your favorite tools.",
+	"version": "0.3.790",
+	"publisher": "ms-vsliveshare",
+	"preview": true,
+	"license": "SEE LICENSE IN LICENSE.txt",
+	"homepage": "https://aka.ms/vsls",
+	"bugs": {
+		"url": "https://aka.ms/vsls-issues",
+		"email": "vsls-feedback@microsoft.com"
+	},
+	"author": {
+		"name": "Microsoft"
+	},
+	"engines": {
+		"vscode": "^1.19.1"
+	},
+	"keywords": [
+		"Collaboration",
+		"Co-Edit",
+		"Co-Debug",
+		"Sharing",
+		"Remote"
+	],
+	"aiKey": "AIF-d9b70cd4-b9f9-4d70-929b-a071c400b217",
+	"categories": [
+		"Other"
+	],
+	"repository": {
+		"url": "https://github.com/MicrosoftDocs/live-share"
+	},
+	"icon": "images/icon.png",
+	"activationEvents": [
+		"onFileSystemAccess:vsls",
+		"onFileSystem:vsls",
+		"*"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "vsliveshareTreeExplorerActivityBar",
+					"title": "Live Share",
+					"icon": "images/dark/liveshare.svg"
+				}
+			]
+		},
+		"views": {
+			"vsliveshareTreeExplorerActivityBar": [
+				{
+					"id": "vsliveshareActivityBar",
+					"name": "Session Details",
+					"when": "liveshare:showExplorer"
+				}
+			],
+			"explorer": [
+				{
+					"id": "vsliveshareTreeExplorer",
+					"name": "Live Share",
+					"when": "liveshare:showExplorer && liveshare:isCollaborating"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "liveshare.signin.browser",
+				"title": "Sign In With Browser",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.signin.token",
+				"title": "Sign In With User Code",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.signout",
+				"title": "Sign Out",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.start",
+				"title": "Start Collaboration Session (Share)",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.startFromFileTreeExplorer",
+				"title": "Start Collaboration Session (Share)",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/share.svg",
+					"light": "images/light/share.svg"
+				}
+			},
+			{
+				"command": "liveshare.joinFromActivityBar",
+				"title": "Join Collaboration Session",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/join.svg",
+					"light": "images/light/join.svg"
+				}
+			},
+			{
+				"command": "liveshare.startFromActivityBar",
+				"title": "Start Collaboration Session (Share)",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/share.svg",
+					"light": "images/light/share.svg"
+				}
+			},
+			{
+				"command": "liveshare.end",
+				"title": "Stop Collaboration Session",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.endFromFileTreeExplorer",
+				"title": "Stop Collaboration Session",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/stop.svg",
+					"light": "images/stop.svg"
+				}
+			},
+			{
+				"command": "liveshare.endFromActivityBar",
+				"title": "Stop Collaboration Session",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/stop.svg",
+					"light": "images/stop.svg"
+				}
+			},
+			{
+				"command": "liveshare.join",
+				"title": "Join Collaboration Session",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.leave",
+				"title": "Leave Collaboration Session",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.leaveFromFileTreeExplorer",
+				"title": "Leave Collaboration Session",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/stop.svg",
+					"light": "images/stop.svg"
+				}
+			},
+			{
+				"command": "liveshare.leaveFromActivityBar",
+				"title": "Leave Collaboration Session",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/stop.svg",
+					"light": "images/stop.svg"
+				}
+			},
+			{
+				"command": "liveshare.collaboration.link.copy",
+				"title": "Copy Collaboration Link",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/copy.svg",
+					"light": "images/light/copy.svg"
+				}
+			},
+			{
+				"command": "liveshare.collaboration.link.copyFromFileTreeExplorer",
+				"title": "Copy Collaboration Link",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/copy.svg",
+					"light": "images/light/copy.svg"
+				}
+			},
+			{
+				"command": "liveshare.collaboration.link.copyFromActivityBar",
+				"title": "Copy Collaboration Link",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/copy.svg",
+					"light": "images/light/copy.svg"
+				}
+			},
+			{
+				"command": "liveshare.debug",
+				"title": "Join Debug Session",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.listSharedServers",
+				"title": "Show Shared Servers",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.shareServer",
+				"title": "Share Server",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.shareServerFromFileTreeExplorer",
+				"title": "Share Server",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/addServer.svg",
+					"light": "images/light/addServer.svg"
+				}
+			},
+			{
+				"command": "liveshare.shareServerFromActivityBar",
+				"title": "Share Server",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/addServer.svg",
+					"light": "images/light/addServer.svg"
+				}
+			},
+			{
+				"command": "liveshare.openServerInBrowserFromFileTreeExplorer",
+				"title": "Open Server in Browser",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/globe.svg",
+					"light": "images/light/globe.svg"
+				}
+			},
+			{
+				"command": "liveshare.openServerInBrowserFromActivityBar",
+				"title": "Open Server in Browser",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/globe.svg",
+					"light": "images/light/globe.svg"
+				}
+			},
+			{
+				"command": "liveshare.unshareServer",
+				"title": "Unshare Server",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.unshareServerFromFileTreeExplorer",
+				"title": "Unshare Server",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/stop.svg",
+					"light": "images/stop.svg"
+				}
+			},
+			{
+				"command": "liveshare.unshareServerFromActivityBar",
+				"title": "Unshare Server",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/stop.svg",
+					"light": "images/stop.svg"
+				}
+			},
+			{
+				"command": "liveshare.copyServerURLFromFileTreeExplorer",
+				"title": "Copy Server URL",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/copy.svg",
+					"light": "images/light/copy.svg"
+				}
+			},
+			{
+				"command": "liveshare.copyServerURLFromActivityBar",
+				"title": "Copy Server URL",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/copy.svg",
+					"light": "images/light/copy.svg"
+				}
+			},
+			{
+				"command": "liveshare.launcherSetup",
+				"title": "Launcher Setup",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.focusParticipants",
+				"title": "Focus Participants",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.focusParticipantsFromFileTreeExplorer",
+				"title": "Focus Participants",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/focus.svg",
+					"light": "images/light/focus.svg"
+				}
+			},
+			{
+				"command": "liveshare.focusParticipantsFromActivityBar",
+				"title": "Focus Participants",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/focus.svg",
+					"light": "images/light/focus.svg"
+				}
+			},
+			{
+				"command": "liveshare.listParticipants",
+				"title": "List Participants",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.follow",
+				"title": "Follow Participant",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/pin.svg",
+					"light": "images/light/pin.svg"
+				}
+			},
+			{
+				"command": "liveshare.followToTheSide",
+				"title": "Follow to the side",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/pin.svg",
+					"light": "images/light/pin.svg"
+				}
+			},
+			{
+				"command": "liveshare.followToTheSideFromActivityBar",
+				"title": "Follow to the side",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/pin.svg",
+					"light": "images/light/pin.svg"
+				}
+			},
+			{
+				"command": "liveshare.followToTheSideFromTreeExplorer",
+				"title": "Follow to the side",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/pin.svg",
+					"light": "images/light/pin.svg"
+				}
+			},
+			{
+				"command": "liveshare.followFromFileTreeExplorer",
+				"title": "Follow Participant",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/pin-small.svg",
+					"light": "images/light/pin-small.svg"
+				}
+			},
+			{
+				"command": "liveshare.followFromActivityBar",
+				"title": "Follow Participant",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/pin-small.svg",
+					"light": "images/light/pin-small.svg"
+				}
+			},
+			{
+				"command": "liveshare.unfollow",
+				"title": "Cancel Following Participant",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/pin-green.svg",
+					"light": "images/pin-green.svg"
+				}
+			},
+			{
+				"command": "liveshare.unfollowFromFileTreeExplorer",
+				"title": "Cancel Following Participant",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/pin-green-small.svg",
+					"light": "images/pin-green-small.svg"
+				}
+			},
+			{
+				"command": "liveshare.unfollowFromActivityBar",
+				"title": "Cancel Following Participant",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/pin-green-small.svg",
+					"light": "images/pin-green-small.svg"
+				}
+			},
+			{
+				"command": "liveshare.removeParticipant",
+				"title": "Remove Participant",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.removeParticipantFromFileTreeExplorer",
+				"title": "Remove Participant",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/cross.svg",
+					"light": "images/cross.svg"
+				}
+			},
+			{
+				"command": "liveshare.removeParticipantFromActivityBar",
+				"title": "Remove Participant",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/cross.svg",
+					"light": "images/cross.svg"
+				}
+			},
+			{
+				"command": "liveshare.removeTerminalFromFileTreeExplorer",
+				"title": "Remove Terminal",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/cross.svg",
+					"light": "images/cross.svg"
+				}
+			},
+			{
+				"command": "liveshare.removeTerminalFromActivityBar",
+				"title": "Remove Terminal",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/cross.svg",
+					"light": "images/cross.svg"
+				}
+			},
+			{
+				"command": "liveshare.exportLogs",
+				"title": "Export Logs",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.shareTerminal",
+				"title": "Share Terminal",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.shareTerminalFromFileTreeExplorer",
+				"title": "Share Terminal",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/addTerminal.svg",
+					"light": "images/light/addTerminal.svg"
+				}
+			},
+			{
+				"command": "liveshare.shareTerminalFromActivityBar",
+				"title": "Share Terminal",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/addTerminal.svg",
+					"light": "images/light/addTerminal.svg"
+				}
+			},
+			{
+				"command": "liveshare.listSharedTerminals",
+				"title": "Show Shared Terminals",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.help",
+				"title": "Help",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.openTerminalFromFileTreeExplorer",
+				"title": "Focus Terminal",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/focusTerminal.svg",
+					"light": "images/light/focusTerminal.svg"
+				}
+			},
+			{
+				"command": "liveshare.openTerminalFromActivityBar",
+				"title": "Focus Terminal",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/focusTerminal.svg",
+					"light": "images/light/focusTerminal.svg"
+				}
+			},
+			{
+				"command": "liveshare.makeTerminalReadWriteFromFileTreeExplorer",
+				"title": "Make Read/Write",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.makeTerminalReadWriteFromActivityBar",
+				"title": "Make Read/Write",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.makeTerminalReadOnlyFromFileTreeExplorer",
+				"title": "Make Read-Only",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.makeTerminalReadOnlyFromActivityBar",
+				"title": "Make Read-Only",
+				"category": "Live Share"
+			},
+			{
+				"command": "liveshare.startReadOnly",
+				"title": "Start Read-only Collaboration Session (Share)",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/share.svg",
+					"light": "images/light/share.svg"
+				}
+			},
+			{
+				"command": "liveshare.startReadOnlyFromFileTreeExplorer",
+				"title": "Start Read-only Collaboration Session (Share)",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/share.svg",
+					"light": "images/light/share.svg"
+				}
+			},
+			{
+				"command": "liveshare.startReadOnlyFromActivityBar",
+				"title": "Start Read-only Collaboration Session (Share)",
+				"category": "Live Share",
+				"icon": {
+					"dark": "images/dark/share.svg",
+					"light": "images/light/share.svg"
+				}
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "liveshare.startFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && liveshare:state != Shared && liveshare:state != SharingInProgress && liveshare:state != JoiningInProgress && liveshare:state != Joined",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.endFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && liveshare:state == Shared",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.leaveFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && liveshare:state == Joined",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.focusParticipantsFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && liveshare:hasCollaborators",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.collaboration.link.copyFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && liveshare:state == Shared",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.shareServerFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && liveshare:state == Shared",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.shareTerminalFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && liveshare:state == Shared",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.startFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && liveshare:state != Shared && liveshare:state != SharingInProgress && liveshare:state != JoiningInProgress && liveshare:state != Joined",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.joinFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && liveshare:state != Shared && liveshare:state != SharingInProgress && liveshare:state != JoiningInProgress && liveshare:state != Joined",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.endFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && liveshare:state == Shared",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.leaveFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && liveshare:state == Joined",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.focusParticipantsFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && liveshare:hasCollaborators",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.collaboration.link.copyFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && liveshare:state == Shared",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.shareServerFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && liveshare:state == Shared",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.shareTerminalFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && liveshare:state == Shared",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "liveshare.followFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == participant"
+				},
+				{
+					"command": "liveshare.followFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == guest"
+				},
+				{
+					"command": "liveshare.followToTheSideFromTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == participant"
+				},
+				{
+					"command": "liveshare.followToTheSideFromTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorerr && viewItem == guest"
+				},
+				{
+					"command": "liveshare.followToTheSideFromTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == followedparticipant"
+				},
+				{
+					"command": "liveshare.followToTheSideFromTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == followedguest"
+				},
+				{
+					"command": "liveshare.unfollowFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == followedparticipant"
+				},
+				{
+					"command": "liveshare.unfollowFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == followedguest"
+				},
+				{
+					"command": "liveshare.removeParticipantFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == guest",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.removeParticipantFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == guest"
+				},
+				{
+					"command": "liveshare.removeParticipantFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == followedguest",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.removeParticipantFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == followedguest"
+				},
+				{
+					"command": "liveshare.unshareServerFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == localserver",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.unshareServerFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == localserver"
+				},
+				{
+					"command": "liveshare.openServerInBrowserFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == localserver"
+				},
+				{
+					"command": "liveshare.openServerInBrowserFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == remoteserver"
+				},
+				{
+					"command": "liveshare.copyServerURLFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == localserver",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.copyServerURLFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == localserver"
+				},
+				{
+					"command": "liveshare.copyServerURLFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == remoteserver",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.copyServerURLFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == remoteserver"
+				},
+				{
+					"command": "liveshare.openTerminalFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == localterminal.readonly"
+				},
+				{
+					"command": "liveshare.openTerminalFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == localterminal.readwrite"
+				},
+				{
+					"command": "liveshare.openTerminalFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == remoteterminal"
+				},
+				{
+					"command": "liveshare.removeTerminalFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == localterminal.readonly",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.removeTerminalFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == localterminal.readwrite",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.removeTerminalFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == localterminal.readonly",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.removeTerminalFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == localterminal.readwrite",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.removeTerminalFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == localterminal.readonly"
+				},
+				{
+					"command": "liveshare.removeTerminalFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == localterminal.readwrite"
+				},
+				{
+					"command": "liveshare.removeTerminalFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == localterminal.readonly"
+				},
+				{
+					"command": "liveshare.removeTerminalFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == localterminal.readwrite"
+				},
+				{
+					"command": "liveshare.makeTerminalReadWriteFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == localterminal.readonly && !liveshare:isReadOnlySession"
+				},
+				{
+					"command": "liveshare.makeTerminalReadWriteFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == localterminal.readonly && !liveshare:isReadOnlySession"
+				},
+				{
+					"command": "liveshare.makeTerminalReadOnlyFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && viewItem == localterminal.readwrite && !liveshare:isReadOnlySession"
+				},
+				{
+					"command": "liveshare.makeTerminalReadOnlyFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == localterminal.readwrite && !liveshare:isReadOnlySession"
+				},
+				{
+					"command": "liveshare.followFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == participant"
+				},
+				{
+					"command": "liveshare.followFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == guest"
+				},
+				{
+					"command": "liveshare.followToTheSideFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == participant"
+				},
+				{
+					"command": "liveshare.followToTheSideFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == guest"
+				},
+				{
+					"command": "liveshare.followToTheSideFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == followedparticipant"
+				},
+				{
+					"command": "liveshare.followToTheSideFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == followedguest"
+				},
+				{
+					"command": "liveshare.unfollowFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == followedparticipant"
+				},
+				{
+					"command": "liveshare.unfollowFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == followedguest"
+				},
+				{
+					"command": "liveshare.removeParticipantFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == guest",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.removeParticipantFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == guest"
+				},
+				{
+					"command": "liveshare.removeParticipantFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == followedguest",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.removeParticipantFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == followedguest"
+				},
+				{
+					"command": "liveshare.unshareServerFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == localserver",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.unshareServerFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == localserver"
+				},
+				{
+					"command": "liveshare.openServerInBrowserFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == localserver"
+				},
+				{
+					"command": "liveshare.openServerInBrowserFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == remoteserver"
+				},
+				{
+					"command": "liveshare.copyServerURLFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == localserver",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.copyServerURLFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == localserver"
+				},
+				{
+					"command": "liveshare.copyServerURLFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == remoteserver",
+					"group": "inline"
+				},
+				{
+					"command": "liveshare.copyServerURLFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == remoteserver"
+				},
+				{
+					"command": "liveshare.openTerminalFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == localterminal.readonly"
+				},
+				{
+					"command": "liveshare.openTerminalFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == localterminal.readwrite"
+				},
+				{
+					"command": "liveshare.openTerminalFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && viewItem == remoteterminal"
+				}
+			],
+			"editor/title": [
+				{
+					"command": "liveshare.follow",
+					"when": "liveshare:isFollowable && liveshare:hasCollaborators && !liveshare:isFollowing",
+					"group": "navigation@-1000"
+				},
+				{
+					"command": "liveshare.unfollow",
+					"when": "liveshare:isFollowable && liveshare:hasCollaborators && liveshare:isFollowing",
+					"group": "navigation@-1000"
+				}
+			],
+			"commandPalette": [
+				{
+					"command": "liveshare.signin.browser",
+					"when": "liveshare:state == SignedOut"
+				},
+				{
+					"command": "liveshare.signin.browser",
+					"when": "liveshare:state == SigningIn"
+				},
+				{
+					"command": "liveshare.signin.browser",
+					"when": "liveshare:state == ExternallySigningIn"
+				},
+				{
+					"command": "liveshare.signin.token",
+					"when": "liveshare:state == SignedOut"
+				},
+				{
+					"command": "liveshare.signin.token",
+					"when": "liveshare:state == SigningIn"
+				},
+				{
+					"command": "liveshare.signin.token",
+					"when": "liveshare:state == ExternallySigningIn"
+				},
+				{
+					"command": "liveshare.signout",
+					"when": "liveshare:state != SignedOut"
+				},
+				{
+					"command": "liveshare.start",
+					"when": "liveshare:state != Shared && liveshare:state != Joined"
+				},
+				{
+					"command": "liveshare.start",
+					"when": "liveshare:state == SignedOut"
+				},
+				{
+					"command": "liveshare.startReadOnly",
+					"when": "liveshare:state != Shared && liveshare:state != Joined && liveshare:feature:accessControl"
+				},
+				{
+					"command": "liveshare.startReadOnlyFromFileTreeExplorer",
+					"when": "liveshare:showExplorer && view == vsliveshareTreeExplorer && liveshare:state != Shared && liveshare:state != SharingInProgress && liveshare:state != JoiningInProgress && liveshare:state != Joined && liveshare:feature:accessControl",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.startReadOnlyFromActivityBar",
+					"when": "liveshare:showExplorer && view == vsliveshareActivityBar && liveshare:state != Shared && liveshare:state != SharingInProgress && liveshare:state != JoiningInProgress && liveshare:state != Joined && liveshare:feature:accessControl",
+					"group": "navigation"
+				},
+				{
+					"command": "liveshare.end",
+					"when": "liveshare:state == Shared"
+				},
+				{
+					"command": "liveshare.join",
+					"when": "liveshare:state != Shared && liveshare:state != Joined"
+				},
+				{
+					"command": "liveshare.leave",
+					"when": "liveshare:state == Joined"
+				},
+				{
+					"command": "liveshare.debug",
+					"when": "liveshare:state == Joined"
+				},
+				{
+					"command": "liveshare.listSharedServers",
+					"when": "liveshare:isCollaborating"
+				},
+				{
+					"command": "liveshare.focusParticipants",
+					"when": "liveshare:hasCollaborators && liveshare:supportSummonParticipants"
+				},
+				{
+					"command": "liveshare.shareServer",
+					"when": "liveshare:state == Shared"
+				},
+				{
+					"command": "liveshare.unshareServer",
+					"when": "liveshare:isServerShared && liveshare:state == Shared"
+				},
+				{
+					"command": "liveshare.follow",
+					"when": "liveshare:isFollowable && liveshare:hasCollaborators && !liveshare:isFollowing"
+				},
+				{
+					"command": "liveshare.unfollow",
+					"when": "liveshare:isFollowable && liveshare:hasCollaborators && liveshare:isFollowing"
+				},
+				{
+					"command": "liveshare.listParticipants",
+					"when": "liveshare:hasCollaborators"
+				},
+				{
+					"command": "liveshare.shareTerminal",
+					"when": "liveshare:state == Shared && liveshare:supportSharedTerminals"
+				},
+				{
+					"command": "liveshare.listSharedTerminals",
+					"when": "liveshare:hasSharedTerminals && liveshare:state == Joined"
+				},
+				{
+					"command": "liveshare.help"
+				},
+				{
+					"command": "liveshare.collaboration.link.copy",
+					"when": "liveshare:isCollaborating"
+				},
+				{
+					"command": "liveshare.followFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.followToTheSideFromTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.unfollowFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.followFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.followToTheSideFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.unfollowFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.removeParticipant",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.removeParticipantFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.removeParticipantFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.unshareServerFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.unshareServerFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.collaboration.link.copyFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.collaboration.link.copyFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.startFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.startFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.joinFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.endFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.endFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.focusParticipantsFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.focusParticipantsFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.leaveFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.leaveFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.shareServerFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.shareServerFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.unshareServerFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.unshareServerFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.openServerInBrowserFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.openServerInBrowserFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.copyServerURLFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.copyServerURLFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.shareTerminalFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.shareTerminalFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.openTerminalFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.openTerminalFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.makeTerminalReadWriteFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.makeTerminalReadWriteFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.makeTerminalReadOnlyFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.makeTerminalReadOnlyFromActivityBar",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.removeTerminalFromFileTreeExplorer",
+					"when": "false"
+				},
+				{
+					"command": "liveshare.removeTerminalFromActivityBar",
+					"when": "false"
+				}
+			]
+		},
+		"keybindings": [
+			{
+				"command": "liveshare.follow",
+				"key": "ctrl+alt+f",
+				"mac": "cmd+alt+f",
+				"when": "liveshare:hasCollaborators && !liveshare:isFollowing"
+			},
+			{
+				"command": "liveshare.followToTheSide",
+				"key": "ctrl+alt+/",
+				"mac": "cmd+alt+/",
+				"when": "liveshare:hasCollaborators"
+			},
+			{
+				"command": "liveshare.unfollow",
+				"key": "ctrl+alt+f",
+				"mac": "cmd+alt+f",
+				"when": "liveshare:hasCollaborators && liveshare:isFollowing"
+			},
+			{
+				"command": "liveshare.join",
+				"key": "ctrl+alt+j",
+				"mac": "cmd+alt+j",
+				"when": "liveshare:state != Shared && liveshare:state != Joined"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "Visual Studio Live Share configuration",
+			"properties": {
+				"vsliveshare.join.reload.workspaceId": {
+					"default": null,
+					"type": "string"
+				},
+				"liveshare.diagnosticLogging": {
+					"type": "boolean",
+					"default": false
+				},
+				"liveshare.accountProvider": {
+					"type": "string",
+					"default": null,
+					"description": "Preferred account provider for Visual Studio Live Share sign-in."
+				},
+				"liveshare.account": {
+					"type": "string",
+					"default": null,
+					"description": "Preferred account for Visual Studio Live Share sign-in."
+				},
+				"liveshare.connectionMode": {
+					"type": "string",
+					"default": "auto",
+					"enum": [
+						"auto",
+						"direct",
+						"relay"
+					],
+					"description": "Type of connection used for collaboration; the default (auto) mode prefers a direct connection, but may fallback to a cloud relay if the direct connection failed."
+				},
+				"liveshare.nameTagVisibility": {
+					"type": "string",
+					"default": "Activity",
+					"enum": [
+						"Always",
+						"Activity",
+						"Never"
+					],
+					"description": "Controls when to display a participant's name tag instead of just their cursor."
+				},
+				"liveshare.guestApprovalRequired": {
+					"type": "boolean",
+					"default": false,
+					"description": "Require host to approve all guests attempting to join collaboration session."
+				},
+				"liveshare.joinDebugSessionOption": {
+					"type": "string",
+					"default": "Automatic",
+					"enum": [
+						"Automatic",
+						"Manual",
+						"Prompt"
+					],
+					"description": "Controls how the participant will join incoming shared debug sessions."
+				},
+				"liveshare.showInStatusBar": {
+					"type": "string",
+					"default": "always",
+					"enum": [
+						"always",
+						"whileCollaborating",
+						"never"
+					],
+					"description": "Show or hide the Live Share status bar items."
+				},
+				"liveshare.excludedDebugTypes": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [],
+					"description": "List of debug adapter types to exclude when Live Share attempts to host a debug session."
+				},
+				"liveshare.sharedTerminalWidth": {
+					"type": "number",
+					"default": 120,
+					"description": "Width of shared terminal window, characters."
+				},
+				"liveshare.sharedTerminalHeight": {
+					"type": "number",
+					"default": 50,
+					"description": "Height of shared terminal window, characters."
+				},
+				"liveshare.features": {
+					"type": "string",
+					"default": "default",
+					"enum": [
+						"default",
+						"stable",
+						"experimental"
+					],
+					"description": "Controls set of active features."
+				},
+				"liveshare.keepAliveInterval": {
+					"type": "number",
+					"default": 20,
+					"description": "Sets the number of seconds to wait before sending keep-alive messages in an idle session, used to detect abnormal network disconnection. Set to -1 to disable sending keep-alive messages."
+				},
+				"liveshare.allowGuestTaskControl": {
+					"type": "boolean",
+					"default": false,
+					"description": "Allow guests to run and terminate workspace tasks."
+				},
+				"liveshare.allowGuestDebugControl": {
+					"type": "boolean",
+					"default": false,
+					"description": "Allow guests to start and stop debugging sessions."
+				},
+				"liveshare.languages.allowGuestCommandControl": {
+					"type": "boolean",
+					"default": false,
+					"description": "Allow guests to run arbitrary commands via Code Actions (“Quick Fixes”) and CodeLens"
+				},
+				"liveshare.focusBehavior": {
+					"type": "string",
+					"default": "accept",
+					"description": "Specifies how to respond to focus requests from other participants.",
+					"enum": [
+						"accept",
+						"prompt"
+					]
+				},
+				"liveshare.showReadOnlyUsersInEditor": {
+					"type": "string",
+					"default": "whileFollowing",
+					"description": "Controls visibility of the cursor and highlights for read-only users.",
+					"enum": [
+						"whileFollowing",
+						"always"
+					]
+				},
+				"liveshare.increasedGuestLimit": {
+					"type": "boolean",
+					"default": false,
+					"description": "Increases the guest limit from 5 to 30."
+				},
+				"liveshare.autoShareTerminals": {
+					"type": "boolean",
+					"default": true,
+					"description": "Controls whether terminals are automatically shared with guests."
+				}
+			}
+		},
+		"debuggers": [
+			{
+				"type": "vslsJoin",
+				"label": "Visual Studio Live Share Participant Debugging",
+				"windows": {
+					"program": "./dotnet_modules/Microsoft.Cascade.VSCodeAdapter.exe"
+				},
+				"osx": {
+					"program": "./dotnet_modules/Microsoft.Cascade.VSCodeAdapter"
+				},
+				"args": [],
+				"configurationAttributes": {
+					"launch": {
+						"required": [
+							"agentUri",
+							"joinedInfo",
+							"localPath",
+							"pipeName"
+						],
+						"properties": {
+							"agentUri": {
+								"type": "string",
+								"description": "Agent Uri to connect to Live Share services"
+							},
+							"joinedInfo": {
+								"type": "object",
+								"description": "Join Info"
+							},
+							"localPath": {
+								"type": "string",
+								"description": "Local path of workspace"
+							},
+							"pipeName": {
+								"type": "string",
+								"description": "Pipe name to request host services"
+							}
+						}
+					}
+				}
+			},
+			{
+				"type": "vslsShare",
+				"label": "Visual Studio Live Share Debugging",
+				"windows": {
+					"program": "./dotnet_modules/Microsoft.Cascade.VSCodeHostAdapter.exe"
+				},
+				"osx": {
+					"program": "./dotnet_modules/Microsoft.Cascade.VSCodeHostAdapter"
+				},
+				"args": [],
+				"configurationAttributes": {
+					"launch": {
+						"required": [
+							"agentUri",
+							"joinedInfo",
+							"pipeName",
+							"adapterProxy"
+						],
+						"properties": {
+							"agentUri": {
+								"type": "string",
+								"description": "Agent Uri to connect to Live Share services"
+							},
+							"joinedInfo": {
+								"type": "object",
+								"description": "Join Info"
+							},
+							"pipeName": {
+								"type": "string",
+								"description": "Pipe name to request host services"
+							},
+							"adapterProxy": {
+								"type": "object",
+								"description": "The adapter proxy"
+							}
+						}
+					}
+				}
+			},
+			{
+				"type": "vslsRemoteJoin",
+				"label": "Visual Studio Live Share Remote Debugging",
+				"program": "./out/src/debugger/debugRemoteAdapter.js",
+				"runtime": "node"
+			}
+		],
+		"problemMatchers": [
+			{
+				"name": "vsls",
+				"owner": "vsls",
+				"fileLocation": [
+					"relative",
+					"${workspaceFolder}"
+				],
+				"pattern": [
+					{
+						"regexp": "^([^\\s].*)$",
+						"file": 1
+					},
+					{
+						"regexp": "^\\s+(\\d+):(\\d+)\\s+(error|warning|info)\\s+(.*)\\s\\s+(.*)$",
+						"line": 1,
+						"column": 2,
+						"severity": 3,
+						"message": 4,
+						"code": 5
+					}
+				]
+			}
+		]
+	},
+	"scripts": {
+		"compile": "gulp compile",
+		"build": "gulp build",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "gulp compile && node ./node_modules/vscode/bin/test",
+		"uitest": "gulp compile && node ./out/uitest/index.js",
+		"release": "npm install && gulp release",
+		"launcher-bin": "gulp launcher-binplace",
+		"vscode:uninstall": "node ./out/src/uninstall.js"
+	},
+	"dependencies": {
+		"@vsliveshare/vscode-launcher-linux": "2.0.10",
+		"@vsliveshare/vscode-launcher-osx": "1.2.0",
+		"@vsliveshare/vscode-launcher-win": "1.2.0",
+		"better-unzip": "^0.1.11",
+		"circular-json": "^0.5.5",
+		"clipboardy": "^1.2.2",
+		"color-string": "^1.5.2",
+		"dateformat": "^3.0.2",
+		"download": "^6.2.5",
+		"fs-extra": "^5.0.0",
+		"getos": "^3.1.0",
+		"glob": "^7.1.2",
+		"http-proxy-agent": "^1.0.0",
+		"https-proxy-agent": "^1.0.0",
+		"jsonc-parser": "^0.3.0",
+		"lockfile": "^1.0.3",
+		"lodash.debounce": "^4.0.8",
+		"minimatch": "^3.0.4",
+		"mkdirp": "^0.5.1",
+		"open": "^0.0.5",
+		"ps-tree": "^1.1.0",
+		"read-last-lines": "^1.4.0",
+		"request-light": "^0.2.0",
+		"semaphore-async-await": "^1.5.1",
+		"semver": "^5.4.1",
+		"source-map-support": "^0.5.5",
+		"tar": "^4.3.0",
+		"tmp": "^0.0.33",
+		"typescript": "^3.0.3",
+		"uuid": "^3.2.1",
+		"vscode-debugadapter": "^1.27.0",
+		"vscode-debugprotocol": "^1.27.0",
+		"vscode-extension-telemetry": "^0.0.17",
+		"vscode-jsonrpc": "^3.3.1",
+		"vscode-languageclient": "^4.3.0",
+		"ws": "^3.1.0",
+		"yauzl": "^2.9.1",
+		"yazl": "^2.4.3"
+	},
+	"devDependencies": {
+		"@types/circular-json": "^0.4.0",
+		"@types/clipboardy": "^1.1.0",
+		"@types/color-string": "^1.5.0",
+		"@types/dateformat": "^1.0.1",
+		"@types/download": "^6.2.1",
+		"@types/fs-extra": "^5.0.0",
+		"@types/getos": "^3.0.0",
+		"@types/glob": "^5.0.35",
+		"@types/guid": "^1.0.0",
+		"@types/lockfile": "^1.0.0",
+		"@types/minimatch": "^3.0.3",
+		"@types/minimist": "^1.2.0",
+		"@types/mkdirp": "^0.5.2",
+		"@types/mocha": "^2.2.32",
+		"@types/ncp": "^2.0.1",
+		"@types/node": "^8.10.29",
+		"@types/puppeteer": "^1.6.0",
+		"@types/rewire": "^2.5.28",
+		"@types/rimraf": "^2.0.2",
+		"@types/semver": "^5.4.0",
+		"@types/tar": "^4.0.0",
+		"@types/tmp": "^0.0.33",
+		"@types/uuid": "^3.4.2",
+		"@types/ws": "^3.0.2",
+		"@vsliveshare/vscode-automation": "^1.27.0",
+		"gulp": "^3.9.1",
+		"gulp-git": "^2.4.2",
+		"gulp-install": "^1.1.0",
+		"gulp-json-editor": "^2.2.1",
+		"gulp-sequence": "^0.4.6",
+		"gulp-sourcemaps": "^2.6.1",
+		"gulp-tslint": "^8.1.2",
+		"gulp-typescript": "^3.2.3",
+		"minimist": "^1.2.0",
+		"mocha": "^2.3.3",
+		"mocha-typescript": "^1.1.17",
+		"ncp": "^2.0.0",
+		"ps-node": "^0.1.6",
+		"puppeteer-core": "^1.7.0",
+		"rewire": "^3.0.2",
+		"rimraf": "^2.6.2",
+		"tslint": "^5.11.0",
+		"vsce": "^1.35.0",
+		"vscode": "^1.1.14",
+		"yargs": "^10.0.3"
+	},
+	"executables": {
+		"osx": [
+			"./dotnet_modules/Microsoft.Cascade.VSCodeHostAdapter",
+			"./dotnet_modules/Microsoft.Cascade.VSCodeAdapter",
+			"./node_modules/@vsliveshare/vscode-launcher-osx/Live Share for VS Code.app",
+			"./node_modules/@vsliveshare/vscode-launcher-osx/Live Share for VS Code.app/Contents/MacOS/Live Share for VS Code",
+			"./dotnet_modules/vsls-agent"
+		],
+		"linux": [
+			"./dotnet_modules/Microsoft.Cascade.VSCodeHostAdapter",
+			"./dotnet_modules/Microsoft.Cascade.VSCodeAdapter",
+			"./dotnet_modules/vsls-agent",
+			"./node_modules/clipboardy/fallbacks/linux/xsel"
+		]
+	},
+	"runtimeDependencies": [
+		{
+			"code": "NetCoreWin",
+			"description": ".NET Core Runtime 2.1.401 for win7-x86",
+			"url": "https://download.microsoft.com/download/6/E/B/6EBD972D-2E2F-41EB-9668-F73F5FDDC09C/dotnet-runtime-2.1.3-win-x86.zip",
+			"platforms": [
+				"win32"
+			],
+			"installPath": "./dotnet_modules",
+			"unpackPath": "./temp",
+			"packageRootPath": "./shared/Microsoft.NETCore.App/2.1.3/",
+			"installTestPath": "./dotnet_modules/mscorlib.dll",
+			"checksum": "66608771ad592c703526576363f42d78080788c7e6322340f5e0d115d2f89d97",
+			"fileTotal": 214
+		},
+		{
+			"code": "NetCoreOsx",
+			"description": ".NET Core Runtime 2.1.401 for osx-x64",
+			"url": "https://download.microsoft.com/download/6/E/B/6EBD972D-2E2F-41EB-9668-F73F5FDDC09C/dotnet-runtime-2.1.3-osx-x64.tar.gz",
+			"platforms": [
+				"darwin"
+			],
+			"installPath": "./dotnet_modules",
+			"unpackPath": "./temp",
+			"packageRootPath": "./shared/Microsoft.NETCore.App/2.1.3/",
+			"installTestPath": "./dotnet_modules/mscorlib.dll",
+			"checksum": "23aa7f3d4e998e4ee13837b1fa078cc41ee7fee99caebc4a4588502a5967a058",
+			"fileTotal": 179
+		},
+		{
+			"code": "NetCoreLinux",
+			"description": ".NET Core Runtime 2.1.401 for linux",
+			"url": "https://download.microsoft.com/download/6/E/B/6EBD972D-2E2F-41EB-9668-F73F5FDDC09C/dotnet-runtime-2.1.3-linux-x64.tar.gz",
+			"platforms": [
+				"linux"
+			],
+			"installPath": "./dotnet_modules",
+			"unpackPath": "./temp",
+			"packageRootPath": "./shared/Microsoft.NETCore.App/2.1.3/",
+			"installTestPath": "./dotnet_modules/mscorlib.dll",
+			"checksum": "dd5d52fdc439fce37b2cc706ecdaf8900c36870654bbce4ae693a66279821b2e",
+			"fileTotal": 180
+		}
+	],
+	"__metadata": {
+		"id": "5a6dc0d5-dc02-4121-8e24-cad33a2ff0af",
+		"publisherId": "74365139-d24d-4d0a-8377-c28643f7a216",
+		"publisherDisplayName": "Microsoft"
+	}
+}
