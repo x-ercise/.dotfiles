@@ -42,7 +42,9 @@ module.exports = {
     'watch',
     // Install wget with IRI support
     'wget --enable-iri',
-    'openshift-cli'
+    'openshift-cli',
+    'watchman',
+    'flow'
   ],
   cask: [
     //'adium',
@@ -69,9 +71,12 @@ module.exports = {
     //'vlc',
     'font-fira-code',
     'tiles',
-    'keka'
+    'keka',
+    'android-sdk'
+    //'xquartz' //https://sourabhbajaj.com/mac-setup/Xcode/
   ],
   gem: [
+    'cocoapods'
   ],
   npm: [
     'antic',
