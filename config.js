@@ -41,7 +41,8 @@ module.exports = {
     'vim --with-override-system-vi',
     'watch',
     // Install wget with IRI support
-    'wget --enable-iri'
+    'wget --enable-iri',
+    'openshift-cli'
   ],
   cask: [
     //'adium',
